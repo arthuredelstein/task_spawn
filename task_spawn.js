@@ -41,7 +41,7 @@ promiseFromGenerator = generator => {
       try {
         let {value, done} = success ? generator.next(result)
                                     : generator.throw(result);
-        if (done){
+        if (done) {
           asPromise(value).then(resolve, reject)
         } else {
           processPromise(asPromise(value));
