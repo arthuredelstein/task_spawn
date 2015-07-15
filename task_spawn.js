@@ -27,6 +27,8 @@ let asPromise = yieldArgument => {
     return asPromise(yieldArgument());
   } else if (yieldArgument instanceof Error) {
     return Promise.reject(yieldArgument);
+  } else if (yieldArgument instanceof Array) {
+    return Promise.all(yieldArgument.map(asPromise));
   } else {
     return Promise.resolve(yieldArgument);
   }
